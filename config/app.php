@@ -212,4 +212,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'country_prefix' => env('COUNTRY_PREFIX', '805'),
+    'company_prefix' => env('COMPANY_PREFIX', '805'),
 ];

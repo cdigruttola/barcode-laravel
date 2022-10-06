@@ -13,8 +13,8 @@ class Ean13GeneratorService implements BarcodeGeneratorServiceInterface
      */
     public function genCode($id)
     {
-        $country_prefix = '805';
-        $company_prefix = '12345';
+        $country_prefix = config('app.country_prefix');
+        $company_prefix = config('app.company_prefix');
 
         $prefix = $country_prefix . $company_prefix;
         $prefixLen = strlen($prefix);
