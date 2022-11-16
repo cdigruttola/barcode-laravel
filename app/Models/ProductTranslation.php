@@ -10,7 +10,14 @@ class ProductTranslation extends Model
     use HasFactory;
 
     protected $primaryKey = ['id_product', 'language_code'];
+
+    protected $fillable = [
+        'id_product',
+        'language_code',
+        'name',
+    ];
     public $incrementing = false;
+    public $timestamps = false;
 
 
     public function product()

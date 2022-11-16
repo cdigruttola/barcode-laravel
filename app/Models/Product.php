@@ -13,7 +13,13 @@ class Product extends Model
 
     protected $fillable = [
         'ean13',
+        'reference',
     ];
+
+    public function id()
+    {
+        return $this->id_product;
+    }
 
     public function translations()
     {

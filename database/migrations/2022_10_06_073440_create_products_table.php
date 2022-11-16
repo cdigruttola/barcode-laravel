@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id('id_product');
-            $table->string('reference');
-            $table->string('ean13');
+            $table->string('reference')->nullable();
+            $table->string('ean13')->nullable();
             $table->timestamps();
         });
     }

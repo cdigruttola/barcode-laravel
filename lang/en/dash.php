@@ -1,5 +1,7 @@
 <?php
 return [
+    'Products' => 'Products',
+    'create' => 'Create',
     'product_id' => 'Product ID',
     'reference' => 'Reference',
     'name' => 'Name',
