@@ -115,6 +115,22 @@ class ProductsController extends Controller
     }
 
     /**
+     * Delete product
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function delete(Request $request)
+    {
+        $id = $request->route('id');
+        $product = Product::find($id);
+        $productTranslation = ProductTranslation::query()->where('id_product', $id)->where('language_code', app()->getLocale())->first();
+        $productTranslation->delete();
+        $product->delete();
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    /**
      * @param $id
      * @return void
      */

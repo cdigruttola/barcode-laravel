@@ -24,5 +24,6 @@ Route::get('/create', [ProductsController::class, 'createView'])->middleware(['a
 Route::post('/create', [ProductsController::class, 'create'])->middleware(['auth', 'verified'])->name('create');
 Route::get('/edit/{id}', [ProductsController::class, 'editView'])->middleware(['auth', 'verified'])->name('edit');
 Route::post('/edit', [ProductsController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit');
+Route::delete('/delete/{id}', [ProductsController::class, 'delete'])->middleware(['auth', 'verified'])->name('delete');
 
 require __DIR__ . '/auth.php';

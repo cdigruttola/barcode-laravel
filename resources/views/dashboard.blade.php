@@ -18,6 +18,7 @@
                             <th scope="col">{{ trans(('dash.name')) }}</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,6 +30,11 @@
                                 <td>{!! App\Models\ProductTranslation::query()->where('id_product', $product->id_product)->where('language_code', app()->getLocale())->first()->name !!}</td>
                                 <td><a href="{{ url('/generate') }}/{{$product->id_product}}">{{ trans('dash.generate_ean13') }}</a></td>
                                 <td><a href="{{ url('/edit') }}/{{$product->id_product}}">{{ trans('dash.edit') }}</a></td>
+                                <td><form method="post" action="{{ url('/delete') }}/{{$product->id_product}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">{{ trans('dash.delete') }}</button>
+                                    </form></td>
                             </tr>
                         @empty
                             <tr>
