@@ -20,7 +20,9 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [ProductsController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/generate/{id}', [ProductsController::class, 'generate'])->middleware(['auth', 'verified'])->name('generate');
-Route::get('/create', [ProductsController::class, 'create'])->middleware(['auth', 'verified'])->name('create');
+Route::get('/create', [ProductsController::class, 'createView'])->middleware(['auth', 'verified'])->name('create');
 Route::post('/create', [ProductsController::class, 'create'])->middleware(['auth', 'verified'])->name('create');
+Route::get('/edit/{id}', [ProductsController::class, 'editView'])->middleware(['auth', 'verified'])->name('edit');
+Route::post('/edit', [ProductsController::class, 'edit'])->middleware(['auth', 'verified'])->name('edit');
 
 require __DIR__ . '/auth.php';

@@ -7,4 +7,5 @@ return [
     'name' => 'Name',
     'no_products' => 'No products found',
     'generate_ean13' => 'Generate EAN13',
+    'edit' => 'Edit',
 ];

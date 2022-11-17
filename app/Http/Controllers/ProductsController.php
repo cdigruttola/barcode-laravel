@@ -52,23 +52,66 @@ class ProductsController extends Controller
      * Create product
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\Foundation\Application
      */
     public function create(Request $request)
     {
-        if ($request->isMethod('post')) {
-            $product = Product::create([
-                'reference' => $request->reference,
-            ]);
-            ProductTranslation::create([
-                'id_product' => $product->id(),
-                'language_code' => app()->getLocale(),
-                'name' => $request->name,
-            ]);
-            return redirect(RouteServiceProvider::HOME);
-        } else {
-            return view('product');
-        }
+        $product = Product::create([
+            'reference' => $request->reference,
+        ]);
+        ProductTranslation::create([
+            'id_product' => $product->id(),
+            'language_code' => app()->getLocale(),
+            'name' => $request->name,
+        ]);
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * Create product view
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function createView(Request $request)
+    {
+        return view('product');
+    }
+
+    /**
+     * Edit product
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\Foundation\Application
+     */
+    public function edit(Request $request)
+    {
+        $id = $request->id;
+        $product = Product::find($id);
+        $reference = $request->reference;
+        $product->reference = $reference;
+        $product->update(['reference', $reference]);
+
+        $productTranslation = ProductTranslation::query()->where('id_product', $id)->where('language_code', app()->getLocale())->first();
+        $name = $request->name;
+        $productTranslation->name = $name;
+        $productTranslation->update(['name', $name]);
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * Edit product view
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function editView(Request $request)
+    {
+        $id = $request->route('id');
+        $product = Product::find($id);
+        $productTranslation = ProductTranslation::query()->where('id_product', $id)->where('language_code', app()->getLocale())->first();
+        return view('edit', ['product' => $product, 'productTranslation' => $productTranslation]);
     }
 
     /**
