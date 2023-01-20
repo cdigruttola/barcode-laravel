@@ -6,11 +6,8 @@ use App\Interfaces\BarcodeGeneratorServiceInterface;
 use App\Models\Product;
 use App\Models\ProductTranslation;
 use App\Providers\RouteServiceProvider;
-use http\Exception\RuntimeException;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\View\View;
-use NunoMaduro\Collision\Adapters\Laravel\Exceptions\RequirementsException;
 
 class ProductsController extends Controller
 {
